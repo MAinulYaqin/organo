@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+    head
+        title Organo | Login
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/font-awesome/css/font-awesome.css")
+        link(rel="stylesheet", href="/AdminLTE/dist/css/AdminLTE.min.css")
+        link(rel="stylesheet", href="/AdminLTE/plugins/iCheck/square/blue.css")
+    body.login-page
+            .login-box
+                .login-logo
+                    a(href="javascript:void(0);")
+                        b Organo
+                // /.login-logo
+                .login-box-body
+                    p.login-box-msg Silahkan login
+                    form(action="/login/", method="post", role="form")
+                        - if (messages.info)
+                            .alert.alert-danger.alert-dismissable
+                                button.close(type="button", data-dismissable="alert", aria-hidden="true") x
+                                | #{messages.info}
+                        .form-group.has-feedback
+                            input.form-control(type="text", placeholder="username", name="username", value="")
+                            span.glyphicon.glyphicon-lock.form-control-feedback
+                        .form-group.has-feedback
+                            input.form-control(type="password", placeholder="password", name="password", value="")
+                            span.glyphicon.glyphicon-lock.form-control-feedback
+                        .row
+                            .col-xs-12
+                                input(type="submit", value="login").btn.btn-primary.btn-lock.btn-flat
+                        // /.col
+                // /.login-box-body
+            // /.login-box
+        script(type='text/javascript', src="/AdminLTE/bower_components/jquery/dist/jquery.min.js")
+        script(type='text/javascript', src="/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(type='text/javascript', src="/AdminLTE/plugins/iCheck/icheck.min.js")
+        script.
+            $(function () {
+                $('input').iCheck({
+                    checboxClass: 'icheck_suqre_blue',
+                    radioClass: 'iradio_square_blue',
+                    increaseArea: '20%'
+                });
+            });

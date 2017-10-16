@@ -1,0 +1,52 @@
+const mongoose = require('mongoose');
+const crypto = require('crypto');
+
+const secret = 'Insyaallah123>';
+const password = crypto.createHmac('sha256', secret)
+                    .update('rahasia123')
+                    .digest('hex');
+
+console.log('password' + password);
+
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost/organo');
+
+const User = require('../models/users');
+
+User.find({username: 'superadmin'}, function (err, user) {
+    if (user.length === 0) {
+        var admin = new User({
+            username: 'Ainul',
+            email: 'ainul.y9b@gmail.com',
+            password: password,
+            firstname: 'Ainul',
+            lastname: 'Bedjo',
+            admin: true
+        });
+    
+        admin.save(function (err) {
+            if (err) throw err
+
+            console.log('Admin is created');
+        });
+    }
+});
+
+User.find({username: 'supermember'}, function (err, user) {
+    if (user.length === 0) {
+        var member = new User({
+            username: 'Ainul2',
+            email: 'ainul.y9b@gmail.com',
+            password: password,
+            firstname: 'Ainul',
+            lastname: 'Bedjo2',
+            admin: true
+        });
+    
+        member.save(function (err) {
+            if (err) throw err
+
+            console.log('Member is created');
+        });
+    }
+});

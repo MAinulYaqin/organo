@@ -19,5 +19,6 @@
             "htm",
             "jade"
         ]
-    }
+    },
+    "jshint.enable": false
 }
