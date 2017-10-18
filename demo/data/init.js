@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 
-const secret = 'Insyaallah123>';
+const secret = 'codepolitan';
 const password = crypto.createHmac('sha256', secret)
                     .update('rahasia123')
                     .digest('hex');

@@ -2,10 +2,9 @@ var express = require('express');
 var crypto = require('crypto');
 var User = require('../models/users');
 var Auth_mdw = require('../middleware/auth');
-var app = require('../app');
 
 var router = express.Router();
-var secret = 'Insyaallah123>';
+var secret = 'codepolitan'; // the key used for hide password
 var session_store;
 
 /* GET home page. */
@@ -16,6 +15,7 @@ router.get('/', function (req, res, next) {
     });
 });
 
+/* GET login page */
 router.get('/login', function (req, res, next) {
     res.render('login');
 });
@@ -23,11 +23,14 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     session_store = req.session;
     var password = crypto.createHmac('sha256', secret)
-                    .update(req.param('password'))
+                    .update(req.param('password')) // The password
                     .digest('hex');
 
+    // Alert if value of username or password is null 
     if (req.param('username') == "" || req.param('password') == "") {
         req.flash('info', 'Tidak ada field yang kosong !');
+        console.log(password);
+
         res.redirect('/login');
     } else {
         User.find({ username: req.param('username'), password: password }, function (err, user) {
@@ -43,7 +46,7 @@ router.post('/login', function (req, res, next) {
                 res.redirect('/');
             } else {
                 req.flash('info', 'Sepertinya akun anda salah');
-                res.redirect('/');
+                res.redirect('/login');
             }
         })
     }

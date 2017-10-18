@@ -23,25 +23,26 @@ html(lang="en")
                                 button.close(type="button", data-dismissable="alert", aria-hidden="true") x
                                 | #{messages.info}
                         .form-group.has-feedback
-                            input.form-control(type="text", placeholder="username", name="username", value="")
+                            input.form-control(type="text", placeholder="username", name="username")
                             span.glyphicon.glyphicon-lock.form-control-feedback
                         .form-group.has-feedback
-                            input.form-control(type="password", placeholder="password", name="password", value="")
+                            input.form-control(type="password", placeholder="password", name="password")
                             span.glyphicon.glyphicon-lock.form-control-feedback
                         .row
                             .col-xs-12
-                                input(type="submit", value="login").btn.btn-primary.btn-lock.btn-flat
+                                button(type="submit", style="float: right !IMPORTANT;").btn.btn-primary.btn-lock.btn-flat Login
                         // /.col
                 // /.login-box-body
             // /.login-box
-        script(type='text/javascript', src="/AdminLTE/bower_components/jquery/dist/jquery.min.js")
-        script(type='text/javascript', src="/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js")
-        script(type='text/javascript', src="/AdminLTE/plugins/iCheck/icheck.min.js")
-        script.
-            $(function () {
-                $('input').iCheck({
-                    checboxClass: 'icheck_suqre_blue',
-                    radioClass: 'iradio_square_blue',
-                    increaseArea: '20%'
+            script(type='text/javascript', src="/AdminLTE/bower_components/jquery/dist/jquery.min.js")
+            script(type='text/javascript', src="/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js")
+            script(type='text/javascript', src="/AdminLTE/plugins/iCheck/icheck.min.js")
+            script.
+            
+                $(function () {
+                    $('input').iCheck({
+                        checboxClass: 'icheck_suqre_blue',
+                        radioClass: 'iradio_square_blue',
+                        increaseArea: '20%'
+                    });
                 });
-            });
