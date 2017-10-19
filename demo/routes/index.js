@@ -1,14 +1,22 @@
 var express = require('express');
 var crypto = require('crypto');
 var User = require('../models/users');
-var Auth_mdw = require('../middleware/auth');
+// var Auth_mdw = require('../middleware/auth');
 
 var router = express.Router();
 var secret = 'codepolitan'; // the key used for hide password
 var session_store;
 
+var check_login = function (req, res, next) {
+    if (!req.session.logged_in) {
+        return res.redirect('/login');
+    }
+
+    next();
+}
+
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', check_login ,function (req, res, next) {
     session_store = req.session;
     res.render('index', {
         title: 'Codepolitan Express.js Blog Series', session_store: session_store
