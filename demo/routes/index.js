@@ -62,6 +62,20 @@ router.post('/login', function (req, res, next) {
 
 });
 
+/* GET Logout page */
+router.get('/logout', function (req, res) {
+    // Will destroy session if user logout
+    req.session.destroy(function (err) {
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/login');
+        }
+    })
+});
+
+/* ........................................................................................ */
+
 router.get('/demo1', function (req, res, next) {
     res.render('demo1', {
         message: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
