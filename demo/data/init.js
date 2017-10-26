@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 
-const secret = 'codepolitan';
+const secret = 'codepolitan'; // Kunci
 const password = crypto.createHmac('sha256', secret)
                     .update('rahasia123')
                     .digest('hex');
@@ -38,9 +38,9 @@ User.find({username: 'supermember'}, function (err, user) {
             username: 'Ainul2',
             email: 'ainul.y9b@gmail.com',
             password: password,
-            firstname: 'Ainul',
-            lastname: 'Bedjo2',
-            admin: true
+            firstname: 'Super',
+            lastname: 'member',
+            admin: false
         });
     
         member.save(function (err) {

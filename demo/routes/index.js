@@ -1,7 +1,7 @@
 var express = require('express');
 var crypto = require('crypto');
 var User = require('../models/users');
-// var Auth_mdw = require('../middleware/auth');
+var Auth_mdw = require('../middleware/auth');
 
 var router = express.Router();
 var secret = 'codepolitan'; // the key used for hide password
@@ -42,7 +42,7 @@ router.post('/login', function (req, res, next) {
         res.redirect('/login');
     } else {
         User.find({ username: req.param('username'), password: password }, function (err, user) {
-            if (err) throw err
+            if (err) throw err;
 
             if(user.length > 0) {
                 session_store.username = user[0].username;
@@ -61,6 +61,13 @@ router.post('/login', function (req, res, next) {
 
 
 });
+
+/* GET Secret Page :v */
+router.get('/secret', Auth_mdw.check_login, Auth_mdw.is_admin, function (req, res, next) {
+    session_store = req.session;
+    res.render('secret', { session_store: session_store })
+})
+
 
 /* GET Logout page */
 router.get('/logout', function (req, res) {
