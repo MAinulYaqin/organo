@@ -1,4 +1,9 @@
 {
+    "jshint.enable": true,
+    "jshint.options": {
+        "esversion": 6
+    },
+
     "beautify.language": {
         "js": {
             "type": [
@@ -17,8 +22,8 @@
         "html": [
             "html",
             "htm",
-            "jade"
+            "jade",
+            "pug"
         ]
-    },
-    "jshint.enable": false
+    }
 }
