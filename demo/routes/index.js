@@ -23,11 +23,11 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     session_store = req.session;
     var password = crypto.createHmac('sha256', secret)
-                    .update(req.query('password')) // The password
+                    .update(req.body.password) // The password
                     .digest('hex');
 
     // Alert if value of username or password is null 
-    if (req.param('username') == "" || req.param('password') == "") {
+    if (req.query.username == "" || req.query.password == "") {
         req.flash('info', 'Tidak ada field yang kosong !');
         console.log(password);
 
