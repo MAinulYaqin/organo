@@ -34,7 +34,7 @@ app.use('/users', users);
 var user = require('./models/users')
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/organo');
+mongoose.connect('mongodb://localhost/organo', { useMongoClient: true });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

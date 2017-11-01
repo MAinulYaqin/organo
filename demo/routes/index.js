@@ -23,7 +23,7 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function (req, res, next) {
     session_store = req.session;
     var password = crypto.createHmac('sha256', secret)
-                    .update(req.param('password')) // The password
+                    .update(req.query('password')) // The password
                     .digest('hex');
 
     // Alert if value of username or password is null 

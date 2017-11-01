@@ -8,15 +8,15 @@ const password = crypto.createHmac('sha256', secret)
 
 console.log('password' + password);
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/organo');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/organo', { useMongoClient: true });
 
 const User = require('../models/users');
 
 User.find({username: 'superadmin'}, function (err, user) {
     if (user.length === 0) {
         var admin = new User({
-            username: 'Ainul',
+            username: 'superadmin',
             email: 'ainul.y9b@gmail.com',
             password: password,
             firstname: 'Ainul',
@@ -25,7 +25,7 @@ User.find({username: 'superadmin'}, function (err, user) {
         });
     
         admin.save(function (err) {
-            if (err) throw err
+            if (err) throw err;
 
             console.log('Admin is created');
         });
@@ -35,7 +35,7 @@ User.find({username: 'superadmin'}, function (err, user) {
 User.find({username: 'supermember'}, function (err, user) {
     if (user.length === 0) {
         var member = new User({
-            username: 'Ainul2',
+            username: 'supermember',
             email: 'ainul.y9b@gmail.com',
             password: password,
             firstname: 'Super',
@@ -44,7 +44,7 @@ User.find({username: 'supermember'}, function (err, user) {
         });
     
         member.save(function (err) {
-            if (err) throw err
+            if (err) throw err;
 
             console.log('Member is created');
         });
